@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'tarifa',
     'pago',
     'parqueo',
-    'res_framework',
+    'rest_framework',
 
 ]
 

@@ -8,5 +8,8 @@ class Pago(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True, blank=True)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+        db_table = 'pago'
+
     def __str__(self):
         return f"Pago {self.id} - {self.monto} {self.cliente if self.cliente else 'Sin Cliente'}"

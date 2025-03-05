@@ -11,5 +11,8 @@ class Cliente(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField(null=True, blank=True)
 
+    class Meta:
+        db_table = 'cliente'
+
     def __str__(self):
         return self.user.username

@@ -15,5 +15,8 @@ class Celda(models.Model):
     tipo = models.CharField(max_length=10, choices=TipoCelda.choices)
     estado = models.CharField(max_length=10, choices=EstadoCelda.choices, default=EstadoCelda.LIBRE)
 
+    class Meta:
+        db_table = 'celda'
+
     def __str__(self):
         return f"Celda {self.codigo} ({self.get_tipo_display()})"
