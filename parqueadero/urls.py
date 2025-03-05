@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from celda.views import home
+from celda.views import CeldaList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('celda/', CeldaList.as_view(),name='Listado de Celdas'),
+    path('celda/<int:pk>/', CeldaList.as_view(),name='Detalle de Celda'),
+    
 
 ]
