@@ -6,7 +6,6 @@ class TipoPlan(models.TextChoices):
     OCASIONAL = 'ocasional', 'Ocasional'
 
 class Cliente(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     tipo_plan = models.CharField(max_length=10, choices=TipoPlan.choices)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField(null=True, blank=True)
@@ -14,5 +13,5 @@ class Cliente(models.Model):
     class Meta:
         db_table = 'cliente'
 
-    def __str__(self):
-        return self.user.username
+    # def __str__(self):
+    #     return self.user.username

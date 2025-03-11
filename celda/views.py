@@ -9,11 +9,6 @@ from .serializers import CeldaSerializer
 from rest_framework import status
 
 # Create your views here.
-
-def home (request):
-    return HttpResponse("Hola Mundo")
-
-
 class CeldaList(APIView):
 
     def get(self, request):
@@ -28,18 +23,28 @@ class CeldaList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+class CeldaDetail(APIView):
+
+    def get(self, request, pk):
+        celda = get_object_or_404(Celda, pk=pk)
+        serializer = CeldaSerializer(celda)
+        return Response(serializer.data)    
+
+    
     def put(self, request, pk):
         celda = get_object_or_404(Celda, pk=pk)
         serializer = CeldaSerializer(celda, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     
-    def delete(self, request):
-        celdas = Celda.objects.all()
-        celdas.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request ,pk):
+        celda = get_object_or_404(Celda, pk=pk)
+        celda.delete()
+        return Response({"message":"Celda eliminada"},status=status.HTTP_204_NO_CONTENT)
     
 
 
