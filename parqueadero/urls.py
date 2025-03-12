@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
 
 
 
@@ -25,7 +26,8 @@ urlpatterns = [
     path('',include('cliente.urls')),
     path('',include('pago.urls')),
     path('',include('vehiculo.urls')),
-    path('',include('parqueo.urls'))
+    path('',include('parqueo.urls')),
+    path('',include('tarifa.urls')),
     
 
 ]

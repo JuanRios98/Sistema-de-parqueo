@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pago',
     'parqueo',
     'rest_framework',
+    
 
 ]
 
