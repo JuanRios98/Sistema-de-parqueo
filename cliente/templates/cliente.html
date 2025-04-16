@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="container">
+    <h1 class="text-center fw-bold mb-12 fs-3"><b>👥 Listado de Clientes</b></h1>
+
+    <div >
+      <button href="#" type="button" class="btn btn-success mb-6 text-right">Crear <i class="bi bi-plus-lg"></i></button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-light table-hover table-bordered">
+        <thead class="table-secondary text-center">
+          <tr>
+            <th scope="col">Identificación</th>
+            <th scope="col">Tipo Plan</th>
+            <th scope="col">Fecha Inicio</th>
+            <th scope="col">Fecha Fin</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          {% for cliente in clientes %}
+          <tr>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.get_tipo_plan_display }}</td>
+            <td>{{ cliente.fecha_inicio }}</td>
+            <td>{{ cliente.fecha_fin|default:"Indefinido" }}</td>
+            <td class="text-center">
+              <button href="#" type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"  data-id="{{ cliente.id }}"
+                data-plan="{{ cliente.tipo_plan }}"
+                data-inicio="{{ cliente.fecha_inicio }}"
+                data-fin="{{ cliente.fecha_fin }}"></i></button>
+              <button href="#" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+              <!-- Aquí puedes poner botones si deseas -->
+              <!-- Ejemplo: -->
+              <!-- <a href="#" class="btn btn-sm btn-outline-primary">Ver</a> -->
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5">No hay clientes registrados.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content rounded-4 shadow">
+          <div class="modal-header bg-primary text-white rounded-top">
+            <h5 class="modal-title" id="editarModalLabel">Editar Cliente</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editarForm">
+              <input type="hidden" id="edit-id">
+              <div class="mb-3">
+                <label for="edit-tipo-plan" class="form-label">Tipo de Plan</label>
+                <select class="form-select" id="edit-tipo-plan">
+                  <option value="D">Diario</option>
+                  <option value="M">Mensual</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="edit-inicio" class="form-label">Fecha Inicio</label>
+                <input type="date" class="form-control" id="edit-inicio">
+              </div>
+              <div class="mb-3">
+                <label for="edit-fin" class="form-label">Fecha Fin</label>
+                <input type="date" class="form-control" id="edit-fin">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>  
+</div>
+{% endblock %}
+

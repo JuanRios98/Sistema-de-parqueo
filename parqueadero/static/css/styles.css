@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100%;
+    width: 100%;
+}
+
+#cuerpo{
+    height: 100%;
+
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url(../images/1.parking-1200x600.jpg) no-repeat center center/ cover;
+} 
+
+.container_login{
+    width: 30%;
+    height: 30%;
+    min-height: max-content;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+
+} 
+    
+.table-responsive{
+    border-radius: 15px;
+}
+
+.center{
+    text-align: center;
+}
+    
+.titulo{
+    margin: 15px;
+}
+
+.fuente_textos_titulos{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+}
+
+.fuente_textos{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 20px;
+}
+
+form input{
+    height: 20px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 5px;
+    margin: 0px 5px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.boton_login{
+    margin-bottom: 20px;
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #201f20, #141414);
+    color: white;
+}
+
+
+.icono-login {
+    font-size: 70px !important;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    height: 100vh;
+    width: 100vw;
+}
+
+.page-layout{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar{
+    width: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 100%;
+}
+
+header{
+    background-color: aqua;
+    width: 100%;
+    height: 8%;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+nav{
+    background-color: lightgreen;
+    flex: 1;
+    width: 100%;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+main{
+    background-color: cornflowerblue;
+    width: 100%;
+    height: 86vh;
+    flex: 1;
+    overflow-y: auto;
+}
+footer{
+    background-color: bisque;
+    width: 100%;
+    height: 5vh;
+}
+a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+a:hover {
+    background-color: lightgray;
+    color: white;
+}
+ul{
+    padding-left: 10px;
+}
+
+li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+/* Estilo base para ítems del nav */
+nav ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+nav ul li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+nav i {
+    font-size: 1.5rem;
+}
+
+/* Texto del link con transición para suavidad */
+.link-text {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+/* Responsive y animación de sidebar colapsable */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        transition: width 0.3s ease;
+        overflow: hidden;
+    }
+
+    .content {
+        width: calc(100vw - 60px);
+        transition: width 0.3s ease;
+    }
+
+    /* Oculta texto */
+    .sidebar .link-text {
+        opacity: 0;
+        width: 0;
+    }
+
+    /* Sidebar expandida al pasar el mouse */
+    .sidebar:hover {
+        width: 200px;
+    }
+
+    .sidebar:hover + .content {
+        width: calc(100vw - 200px);
+    }
+
+    .sidebar:hover .link-text {
+        opacity: 1;
+        width: auto;
+    }
+
+    /* Mejora visual del ícono centrado cuando está colapsado */
+    nav ul li {
+        justify-content: center;
+    }
+    .sidebar:hover nav ul li {
+        justify-content: flex-start;
+    }
+}

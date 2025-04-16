@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+15&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+<body id="cuerpo">
+    
+    <main class="container_login">
+
+        <i class="bi bi-person-circle icono-login" ></i>
+      
+        <h2 class="titulo fuente_textos_titulos" >Iniciar Sesión</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" class="center fuente_textos">
+            {% csrf_token %}
+            <label for="username">Usuario:</label>
+            <input type="text" name="username" required><br><br>
+    
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required><br><br>
+ 
+            <div>
+                <div>
+                    <button type="submit" class="boton_login fuente_textos">Entrar</button>
+                </div>
+                
+            </div>
+            
+        </form>
+    </main>
+</body>
+</html>
