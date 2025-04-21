@@ -16,12 +16,23 @@ class ClienteList(APIView):
         serializer = clienteSerializer(clientes, many=True)
         return render(request, 'cliente.html', {'clientes': clientes})
     
+    # def post(self, request):
+    #     serializer= clienteSerializer(data = request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     def post(self, request):
-        serializer= clienteSerializer(data = request.data)
+        serializer = clienteSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            # Agrega más información sobre los errores
+            return Response({
+                'error': 'Los datos no son válidos',
+                'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
         
 class ClienteDetail(APIView):
 

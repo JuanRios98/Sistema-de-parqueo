@@ -6,7 +6,8 @@
     <h1 class="text-center fw-bold mb-12 fs-3"><b>👥 Listado de Clientes</b></h1>
 
     <div >
-      <button href="#" type="button" class="btn btn-success mb-6 text-right">Crear <i class="bi bi-plus-lg"></i></button>
+      <button type="button" class="btn btn-success mb-6 text-right" data-bs-toggle="modal" data-bs-target="#crearModal">
+        Crear <i class="bi bi-plus-lg"></i></button>
     </div>
 
     <div class="table-responsive">
@@ -28,11 +29,17 @@
             <td>{{ cliente.fecha_inicio }}</td>
             <td>{{ cliente.fecha_fin|default:"Indefinido" }}</td>
             <td class="text-center">
-              <button href="#" type="button" class="btn btn-outline-primary"><i class="bi bi-pencil-square"  data-id="{{ cliente.id }}"
-                data-plan="{{ cliente.tipo_plan }}"
-                data-inicio="{{ cliente.fecha_inicio }}"
-                data-fin="{{ cliente.fecha_fin }}"></i></button>
-              <button href="#" type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+              <button type="button" class="btn btn-outline-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal"
+              data-id="{{ cliente.id }}"
+              data-plan="{{ cliente.tipo_plan }}"
+              data-inicio="{{ cliente.fecha_inicio|date:'Y-m-d' }}"
+              {% if cliente.fecha_fin %}
+                data-fin="{{ cliente.fecha_fin|date:'Y-m-d' }}"
+              {% else %}
+                data-fin=""
+              {% endif %}>
+              <i class="bi bi-pencil-square"></i></button>
+              <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
               <!-- Aquí puedes poner botones si deseas -->
               <!-- Ejemplo: -->
               <!-- <a href="#" class="btn btn-sm btn-outline-primary">Ver</a> -->
@@ -47,7 +54,7 @@
       </table>
     </div>
 
-    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" >
       <div class="modal-dialog">
         <div class="modal-content rounded-4 shadow">
           <div class="modal-header bg-primary text-white rounded-top">
@@ -58,10 +65,14 @@
             <form id="editarForm">
               <input type="hidden" id="edit-id">
               <div class="mb-3">
+                <label for="edit-id-view" class="form-label">ID del Cliente</label>
+                <input type="text" class="form-control" id="edit-id-view" readonly>
+              </div>
+              <div class="mb-3">
                 <label for="edit-tipo-plan" class="form-label">Tipo de Plan</label>
                 <select class="form-select" id="edit-tipo-plan">
-                  <option value="D">Diario</option>
-                  <option value="M">Mensual</option>
+                  <option value="ocasional">Ocasional</option>
+                  <option value="mensual">Mensual</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -79,8 +90,40 @@
       </div>
     </div>
 
+  <!-- Modal para crear cliente -->
 
-  </div>  
+  </div>    <div class="modal fade" id="crearModal" tabindex="-1" aria-labelledby="crearModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header bg-success text-white rounded-top">
+          <h5 class="modal-title" id="crearModalLabel">Crear Cliente</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="crearForm">
+            <div class="mb-3">
+              <label for="nuevo-tipo-plan" class="form-label">Tipo de Plan</label>
+              <select class="form-select" id="nuevo-tipo-plan" required>
+                <option value="ocasional">Ocasional</option>
+                <option value="mensual">Mensual</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="nuevo-inicio" class="form-label">Fecha Inicio</label>
+              <input type="date" class="form-control" id="nuevo-inicio" required>
+            </div>
+            <div class="mb-3">
+              <label for="nuevo-fin" class="form-label">Fecha Fin</label>
+              <input type="date" class="form-control" id="nuevo-fin">
+            </div>
+            <button type="submit" class="btn btn-success w-100">Guardar Cliente</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
+
 
