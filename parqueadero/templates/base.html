@@ -32,6 +32,7 @@
                 <a href="#" class="block px-2 py-2 rounded hover:bg-slate-700">🚗 Celdas</a>
                 <a href="" class="block px-2 py-2 rounded hover:bg-slate-700">👥 Clientes</a>
                 <a href="" class="block px-2 py-2 rounded hover:bg-slate-700">💲 Pagos</a>
+                <a href="{% url 'logout' %}" class="block px-2 py-2 rounded hover:bg-slate-700">🚪 Cerrar Sesión</a>
             </nav>
         </aside>
 
@@ -46,5 +47,7 @@
     <footer class="w-full bg-slate-800 text-white text-center p-4">
         <p>&copy; 2025 Sistema de Parqueo. Todos los derechos reservados.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

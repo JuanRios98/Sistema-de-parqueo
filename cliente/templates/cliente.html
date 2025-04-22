@@ -14,7 +14,9 @@
       <table class="table table-light table-hover table-bordered">
         <thead class="table-secondary text-center">
           <tr>
-            <th scope="col">Identificación</th>
+            <th scope="col" class="col-identificacion">Identificación</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
             <th scope="col">Tipo Plan</th>
             <th scope="col">Fecha Inicio</th>
             <th scope="col">Fecha Fin</th>
@@ -24,13 +26,17 @@
         <tbody class="text-center">
           {% for cliente in clientes %}
           <tr>
-            <td>{{ cliente.id }}</td>
+            <td class="col-identificacion">{{ cliente.id }}</td>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.get_tipo_plan_display }}</td>
             <td>{{ cliente.fecha_inicio }}</td>
             <td>{{ cliente.fecha_fin|default:"Indefinido" }}</td>
             <td class="text-center">
               <button type="button" class="btn btn-outline-primary btn-editar" data-bs-toggle="modal" data-bs-target="#editarModal"
               data-id="{{ cliente.id }}"
+              data-nombre="{{ cliente.nombre }}"
+              data-apellido="{{ cliente.apellido }}"
               data-plan="{{ cliente.tipo_plan }}"
               data-inicio="{{ cliente.fecha_inicio|date:'Y-m-d' }}"
               {% if cliente.fecha_fin %}
@@ -39,7 +45,7 @@
                 data-fin=""
               {% endif %}>
               <i class="bi bi-pencil-square"></i></button>
-              <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash"></i></button>
+              <button type="button" class="btn btn-outline-danger eliminar-btn" data-id="{{cliente.id}}"><i class="bi bi-trash"></i></button>
               <!-- Aquí puedes poner botones si deseas -->
               <!-- Ejemplo: -->
               <!-- <a href="#" class="btn btn-sm btn-outline-primary">Ver</a> -->
@@ -54,6 +60,7 @@
       </table>
     </div>
 
+    <!-- Modal para editar cliente -->
     <div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" >
       <div class="modal-dialog">
         <div class="modal-content rounded-4 shadow">
@@ -67,6 +74,14 @@
               <div class="mb-3">
                 <label for="edit-id-view" class="form-label">ID del Cliente</label>
                 <input type="text" class="form-control" id="edit-id-view" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="edit-nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="edit-nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="edit-apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="edit-apellido" required>
               </div>
               <div class="mb-3">
                 <label for="edit-tipo-plan" class="form-label">Tipo de Plan</label>
@@ -101,6 +116,15 @@
         </div>
         <div class="modal-body">
           <form id="crearForm">
+            <div class="mb-3">
+              <label for="nuevo-nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nuevo-nombre" required>
+            </div>
+            <div class="mb-3">
+              <label for="nuevo-apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="nuevo-apellido" required>
+            </div>
+
             <div class="mb-3">
               <label for="nuevo-tipo-plan" class="form-label">Tipo de Plan</label>
               <select class="form-select" id="nuevo-tipo-plan" required>
